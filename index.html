@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#e8dcc0">
-<title>Mesa D&amp;D 5e</title>
+<title>Mesa D&D 5e</title>
 <!-- Configurações PWA e Instalação -->
 <link rel="manifest" href="manifest.json">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -13,7 +13,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#120f0e;--p1:#1f1814;--p2:#2a201a;--br:#7d5f35;--au:#d9ae52;--rd:#7e1b1b;--rd2:#b23a3a;--tx:#ece1cc;--mu:#a39380}
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;max-width:100%;overflow-x:hidden}
 body{background-color:var(--bg);background-image:radial-gradient(ellipse at 50% 0,#3a1713,#120f0e 70%),repeating-linear-gradient(45deg,#ffffff07 0 2px,#0000 2px 6px);background-attachment:fixed;color:var(--tx);font:16px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;padding-bottom:calc(76px + env(safe-area-inset-bottom))}
 header,main{max-width:640px;margin:auto;padding-left:12px;padding-right:12px}
@@ -68,7 +68,7 @@ nav button span{font-size:20px}nav [aria-selected=true]{color:var(--au);box-shad
 #toast{position:fixed;left:50%;bottom:calc(80px + env(safe-area-inset-bottom));transform:translate(-50%,20px);background:var(--rd);color:#fff;padding:10px 16px;border-radius:20px;opacity:0;transition:.25s;pointer-events:none;z-index:9;max-width:90vw;text-align:center}
 #toast.on{opacity:1;transform:translate(-50%,0)}
 section[hidden]{display:none}
-@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@media (prefers-reduced-motion:reduce){{transition:none!important}}
 /* ===== Tema papel impresso ===== */
 :root{--bg:#e8dcc0;--p1:#f3ead2;--p2:#f6eed8;--br:#2b2118;--au:#7a1f1f;--rd:#7a1f1f;--rd2:#7a1f1f;--tx:#2b2118;--mu:#66553f}
 body{background-color:var(--bg);background-image:repeating-linear-gradient(0deg,#6b4e2a0f 0 1px,#0000 1px 4px),repeating-linear-gradient(90deg,#6b4e2a0a 0 1px,#0000 1px 5px),radial-gradient(ellipse at 50% 0,#f8f0da,#e2d4b2 95%);background-attachment:fixed;font-family:Georgia,"Times New Roman",serif}
@@ -122,9 +122,8 @@ nav button span{font-variant-emoji:text;font-family:"Noto Sans Cham","Segoe UI S
 .ver{font:12px Georgia,serif;color:var(--mu);margin-left:6px}
 .chr{display:grid;grid-template-columns:1fr auto auto;gap:8px;margin-bottom:8px}
 .chr select{border:2px solid var(--br);border-radius:3px;background:#f3ead2;padding:8px}
-
 .hidden { display: none !important; }
-/* ===== v2.0: mesa multiplayer ===== */
+/* ===== v2.0: mesa multiplayer ===== /
 textarea{width:100%;min-height:70px;padding:8px 4px;background:transparent;color:var(--tx);border:0;border-bottom:1.5px solid var(--br);font:inherit;resize:vertical}
 .cs{display:inline-flex;gap:8px;align-items:center;margin:0 auto;padding:4px 12px;border:2px solid var(--br);border-radius:16px;background:#f9f2de;font-size:14px}
 .dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:#a33;flex:none}.on>.dot,.dot.on{background:#2e8b3d}
@@ -149,7 +148,7 @@ textarea{width:100%;min-height:70px;padding:8px 4px;background:transparent;color
 #mimg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;-webkit-user-drag:none}
 #grid{position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(#2b21182e 1px,transparent 1px),linear-gradient(90deg,#2b21182e 1px,transparent 1px)}
 #rsv{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
-.tok{position:absolute;border-radius:50%;border:3px solid var(--br);background:#f9f2de center/cover;display:grid;place-items:center;font:700 calc(var(--s)*.45) Cinzel,Georgia,serif;color:var(--au);transform:translate(-50%,-50%);touch-action:none;z-index:2}
+.tok{position:absolute;border-radius:50%;border:3px solid var(--br);background:#f9f2de center/cover;display:grid;place-items:center;font:700 calc(var(--s).45) Cinzel,Georgia,serif;color:var(--au);transform:translate(-50%,-50%);touch-action:none;z-index:2}
 .tok.me{border-color:#d9ae52;box-shadow:0 0 0 3px #7a1f1f}.tok.off{opacity:.5}
 .tok em{position:absolute;top:100%;left:50%;transform:translateX(-50%) scale(var(--inv));transform-origin:50% 0;font:700 12px Georgia,serif;font-style:normal;background:#2b2118d9;color:#f3ead2;padding:1px 7px;border-radius:8px;white-space:nowrap;pointer-events:none}
 .mk{position:absolute;transform:translate(-50%,-100%) scale(var(--inv));transform-origin:50% 100%;font-size:32px;line-height:1;filter:drop-shadow(0 2px 2px #0009);z-index:3}
@@ -168,7 +167,7 @@ textarea{width:100%;min-height:70px;padding:8px 4px;background:transparent;color
 </head>
 <body>
 <div id="lobby" class="intro"><div class="iw">
-<div class="dice" aria-hidden="true">⚄</div><h1>Mesa de D&amp;D 5e <small class="ver">v2.0.0</small></h1>
+<div class="dice" aria-hidden="true">⚄</div><h1>Mesa de D&D 5e <small class="ver">v2.0.0</small></h1>
 <div id="cs" class="cs"><i class="dot"></i><span id="cst">Conectando ao servidor…</span></div>
 <div class="card" style="text-align:left"><h2>Criar nova mesa</h2><p class="mu" style="margin:0 0 10px">Você será o Mestre (DM) e receberá um código de 4 letras para compartilhar.</p><button class="btn pri" id="mk">Criar Nova Mesa</button></div>
 <div class="card" style="text-align:left"><h2>Entrar em mesa</h2><div class="g2">
@@ -179,20 +178,26 @@ textarea{width:100%;min-height:70px;padding:8px 4px;background:transparent;color
 <p class="err" id="le" role="alert"></p></div></div>
 <div id="app" hidden><div id="top"><b id="rc"></b><button class="btn" id="cp">Copiar</button><span class="badge" id="rl"></span><i class="dot" id="cs2"></i><span class="sp"></span><button class="btn hidden" id="btnInstall">📲 Instalar App</button><button class="btn" id="lv">Sair</button><div id="tabs"></div></div>
 <div id="v-sheet" class="view" hidden><header>
-  <h1>Ficha de D&amp;D 5e <small class="ver">v2.0.0</small></h1>
-  <div class="chr"><select id="chars" aria-label="Escolher ficha"></select><button class="btn" id="newc">Nova ficha</button><button class="btn" id="delc">Excluir</button></div>
-  <div class="hb">
-    <button class="btn" id="exp">Exportar Ficha (.JSON)</button>
-    <button class="btn" id="imp">Importar Ficha (.JSON)</button>
-    <input type="file" id="impf" accept=".json,application/json" hidden>
-  </div>
+<h1>Ficha de D&D 5e <small class="ver">v2.0.0</small></h1>
+<div class="chr"><select id="chars" aria-label="Escolher ficha"></select><button class="btn" id="newc">Nova ficha</button><button class="btn" id="delc">Excluir</button></div>
+<div class="hb">
+<button class="btn" id="exp">Exportar Ficha (.JSON)</button>
+<button class="btn" id="imp">Importar Ficha (.JSON)</button>
+<input type="file" id="impf" accept=".json,application/json" hidden>
+</div>
 </header>
 <main>
-  <section id="geral"></section><section id="combate" hidden></section><section id="pericias" hidden></section>
-  <section id="itens" hidden></section><section id="magia" hidden></section>
+<section id="geral"></section><section id="combate" hidden></section><section id="pericias" hidden></section>
+<section id="itens" hidden></section><section id="magia" hidden></section>
 </main>
 <nav id="nav" aria-label="Seções da ficha"></nav></div>
 <div id="v-dm" class="view" hidden><div id="pg" class="pgrid"></div></div>
 <div id="v-map" class="view" hidden><div id="mv"><div id="world"><img id="mimg" alt="" hidden><div id="grid"></div><svg id="rsv"></svg><div id="ml"></div><div id="tl"></div><div id="rlab" class="rlab" hidden></div></div></div>
-<div class="ctl"><button class="btn" id="zi" aria-label="Aproximar">+</button><button class="btn" id="zo" aria-label="Afastar">−</button><button class="btn" id="cen" aria-label="Centralizar no personagem">◎</button><button class="btn" id="rul" aria-label="Medir distância">📏</button>
-<button class="btn dmo" id="pin" aria-label="Adicionar marcador" hidden>📌</button><button class="btn dmo" id="mup-b" aria-label="Carregar mapa" hidden>🖼</button><button class="btn dmo" id="cel" aria-
+<div class="ctl">
+<button class="btn" id="zi" aria-label="Aproximar">+</button>
+<button class="btn" id="zo" aria-label="Afastar">−</button>
+<button class="btn" id="cen" aria-label="Centralizar no personagem">◎</button>
+<button class="btn" id="rul" aria-label="Medir distância">📏</button>
+<button class="btn dmo" id="pin" aria-label="Adicionar marcador" hidden>📌</button>
+<button class="btn dmo" id="mup-b" aria-label="Carregar mapa" hidden>🖼</button>
+<button class="btn dmo" id="cel" aria-label="Tamanho do quadrado" hidden

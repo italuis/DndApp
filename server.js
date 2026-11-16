@@ -94,6 +94,30 @@ io.on('connection', s => {
     toDM('player:update', pub(p));
   });
 
+  // Restaura uma mesa a partir de um backup salvo pelo Mestre
+  s.on('room:restore', (d, cb) => {
+    const code = str(d?.code, 4).toUpperCase();
+    if (!/^[A-Z0-9]{4}$/.test(code)) return ok(cb, { ok: false, error: 'Código inválido no arquivo.' });
+    if (rooms.has(code)) return ok(cb, { ok: false, error: 'Esta mesa já está ativa no servidor.' });
+    const players = (Array.isArray(d.players) ? d.players : []).slice(0, 12)
+      .filter(p => p && typeof p.id === 'string' && /^[a-z0-9]{6,12}$/i.test(p.id))
+      .map(p => ({ id: p.id, name: str(p.name, 40) || 'Jogador',
+        avatar: typeof p.avatar === 'string' && p.avatar.length < 60000 ? p.avatar : '',
+        sheet: p.sheet && typeof p.sheet === 'object' ? p.sheet : null,
+        tok: p.tok && isFinite(p.tok.x) && isFinite(p.tok.y) ? { x: p.tok.x, y: p.tok.y } : null,
+        online: false, sock: null, pending: false }));
+    const markers = (Array.isArray(d.markers) ? d.markers : []).slice(0, 200)
+      .filter(m => m && isFinite(m.x) && isFinite(m.y))
+      .map(m => ({ id: typeof m.id === 'string' ? str(m.id, 20) : rid(), x: m.x, y: m.y, ...mk(m) }));
+    const mp = d.map || {};
+    const r = { code, dmSock: s.id, dmToken: rid(), timer: null, markers,
+      players: new Map(players.map(p => [p.id, p])),
+      map: { img: typeof mp.img === 'string' && (mp.img === '' || mp.img.startsWith('data:image/')) ? mp.img : '',
+             w: numv(mp.w) || 2000, h: numv(mp.h) || 1500, cell: numv(mp.cell) || 50 } };
+    rooms.set(code, r); attach(r, 'dm');
+    ok(cb, { ok: true, code, token: r.dmToken, state: full(r) });
+  });
+
   // Mestre edita a ficha INTEIRA do jogador
   s.on('dm:sheet', d => {
     if (!isDM() || !d || typeof d.sheet !== 'object' || d.sheet === null) return;

@@ -1,0 +1,15 @@
+
+  "name": "Mesa D&D 5e",
+  "short_name": "D&D Mesa",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#120f0e",
+  "theme_color": "#e8dcc0",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

@@ -98,7 +98,14 @@ io.on('connection', s => {
   s.on('room:restore', (d, cb) => {
     const code = str(d?.code, 4).toUpperCase();
     if (!/^[A-Z0-9]{4}$/.test(code)) return ok(cb, { ok: false, error: 'Código inválido no arquivo.' });
-    if (rooms.has(code)) return ok(cb, { ok: false, error: 'Esta mesa já está ativa no servidor.' });
+    const tok = typeof d.dmToken === 'string' && /^[a-f0-9]{16}$/.test(d.dmToken) ? d.dmToken : null;
+    if (rooms.has(code)) {
+      const cur = rooms.get(code);
+      if (!tok || tok !== cur.dmToken) return ok(cb, { ok: false, error: 'Esta mesa já está ativa e o arquivo não é dela.' });
+      cur.dmSock = s.id; attach(cur, 'dm');
+      s.to(cur.code).emit('dm:status', { online: true });
+      return ok(cb, { ok: true, code, token: cur.dmToken, state: full(cur) });
+    }
     const players = (Array.isArray(d.players) ? d.players : []).slice(0, 12)
       .filter(p => p && typeof p.id === 'string' && /^[a-z0-9]{6,12}$/i.test(p.id))
       .map(p => ({ id: p.id, name: str(p.name, 40) || 'Jogador',
@@ -110,7 +117,7 @@ io.on('connection', s => {
       .filter(m => m && isFinite(m.x) && isFinite(m.y))
       .map(m => ({ id: typeof m.id === 'string' ? str(m.id, 20) : rid(), x: m.x, y: m.y, ...mk(m) }));
     const mp = d.map || {};
-    const r = { code, dmSock: s.id, dmToken: rid(), timer: null, markers,
+    const r = { code, dmSock: s.id, dmToken: tok || rid(), timer: null, markers,
       players: new Map(players.map(p => [p.id, p])),
       map: { img: typeof mp.img === 'string' && (mp.img === '' || mp.img.startsWith('data:image/')) ? mp.img : '',
              w: numv(mp.w) || 2000, h: numv(mp.h) || 1500, cell: numv(mp.cell) || 50 } };

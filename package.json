@@ -1,0 +1,8 @@
+{
+  "name": "dnd-mesa",
+  "version": "2.0.0",
+  "description": "Fichas de D&D 5e + mesa multiplayer em tempo real",
+  "main": "server.js",
+  "scripts": { "start": "node server.js" },
+  "dependencies": { "socket.io": "^4.7.5" }
+}

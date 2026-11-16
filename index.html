@@ -603,7 +603,7 @@ function startEdit(pid){const p=N.players.find(x=>x.id===pid);if(!p)return;if(ed
 function endEdit(){flush();FX.end();ed=null;eb.hidden=true;$('#v-sheet').classList.remove('ed');view('dm')}
 
 /* ---- Salvar e restaurar mesa (backup em arquivo) ---- */
-$('#svb').onclick=()=>{const data={v:2,app:'mesa-dnd',code:N.code,savedAt:new Date().toISOString(),players:N.players.map(p=>({id:p.id,name:p.name,avatar:p.avatar||'',sheet:p.sheet||null,tok:p.tok||null})),markers:N.markers,map:{img:M.img,w:M.w,h:M.h,cell:M.cell}};
+$('#svb').onclick=()=>{const data={v:2,app:'mesa-dnd',code:N.code,dmToken:N.token,savedAt:new Date().toISOString(),players:N.players.map(p=>({id:p.id,name:p.name,avatar:p.avatar||'',sheet:p.sheet||null,tok:p.tok||null})),markers:N.markers,map:{img:M.img,w:M.w,h:M.h,cell:M.cell}};
   const b=new Blob([JSON.stringify(data)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=`mesa-${N.code}-${new Date().toISOString().slice(0,10)}.json`;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),1000);toast('Mesa salva no celular')};
 $('#rb').onclick=()=>$('#rf').click();
 $('#rf').onchange=e=>{const f=e.target.files[0];e.target.value='';if(!f)return;const r=new FileReader();

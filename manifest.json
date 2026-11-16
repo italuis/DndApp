@@ -1,8 +1,19 @@
 {
   "name": "Mesa D&D 5e",
-  "short_name": "D&D Mesa",
+  "short_name": "Mesa D&D",
+  "description": "Fichas de D&D 5e e mesa multiplayer em tempo real",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
-  "background_color": "#111827",
-  "theme_color": "#1f2937"
+  "orientation": "portrait",
+  "background_color": "#e8dcc0",
+  "theme_color": "#e8dcc0",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
 }

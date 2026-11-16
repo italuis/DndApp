@@ -10,6 +10,12 @@ const server = http.createServer((req, res) => {
       if (e) { res.writeHead(500); return res.end('index.html não encontrado'); }
       res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' }); res.end(d);
     });
+  } else if (u === '/manifest.json' || u === '/icon.png') {
+    const type = u.endsWith('.json') ? 'application/manifest+json' : 'image/png';
+    fs.readFile(path.join(__dirname, u.slice(1)), (e, d) => {
+      if (e) { res.writeHead(404); return res.end('Not found'); }
+      res.writeHead(200, { 'Content-Type': type, 'Cache-Control': 'public, max-age=3600' }); res.end(d);
+    });
   } else { res.writeHead(404); res.end('Not found'); }
 });
 const io = new Server(server, { maxHttpBufferSize: 25e6 });
